@@ -11,5 +11,5 @@ sudo gunicorn -c /etc/gunicorn.d/ask_conf.py ask.wsgi:application
 #sudo /etc/init.d/gunicorn restart
 
 # run MySQL & create db
-sudo /etc/init.d/mysql start
+sudo /etc/init.d/mysql restart
 #mysql -uroot -e "create database stepic_web_db"
