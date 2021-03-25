@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# Create your tests here.
+# sudo python3 manage.py test  - start the test
