@@ -12,7 +12,11 @@ sudo /etc/init.d/gunicorn restart
 
 # run MySQL & create db
 sudo /etc/init.d/mysql restart
-mysql -uroot -e "CREATE DATABASE `stepic_web_db` /*!40100 DEFAULT CHARACTER SET utf8*/"
+sudo python3 manage.py makemigrations qa
+sudo python3 manage.py migrate qa
+mysql -uroot -e "CREATE DATABASE `stepic_web_db`
+                DEFAULT CHARACTER SET utf8
+                DEFAULT COLLATE utf8_general_ci;"
 mysql -uroot -e "CREATE USER 'a_user'@'localhost' IDENTIFIED BY '12345678';"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON stepic_web_db.* TO 'a_user'@'localhost'
                 WITH GRANT OPTION;"
