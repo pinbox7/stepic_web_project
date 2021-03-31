@@ -1,5 +1,4 @@
 from django.conf.urls import url
-# from . import views
 from qa.views import test, q_list, question_detail, popular
 
 
