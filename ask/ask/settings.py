@@ -80,6 +80,8 @@ DATABASES = {
         'NAME': 'swebdb',
         'USER': 'auser',
         'PASSWORD': '12345678',
+        'PORT': '3306',
+        'HOST': 'localhost',
     }
 }
 
