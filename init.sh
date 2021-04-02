@@ -12,4 +12,4 @@ sudo /etc/init.d/gunicorn restart
 
 # run MySQL & create db
 sudo /etc/init.d/mysql restart
-mysql -uroot -e "create database stepic_web_db"
+mysql -uroot -e "create database swebdb"

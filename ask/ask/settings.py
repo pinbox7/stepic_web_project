@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'ask.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stepic_web_db',
-        'USER': 'a_user',
+        'NAME': 'swebdb',
+        'USER': 'auser',
         'PASSWORD': '12345678',
     }
 }
