@@ -33,7 +33,7 @@ def paginate(request, qs):
 
 def q_list(request):
     qs = Question.objects.all()
-    # qs = qs.order_by('-added_at')
+    qs = qs.order_by('-id')
     page, paginator = paginate(request, qs)
     paginator.baseurl = reverse('q_list') + '?page='
 
@@ -46,7 +46,7 @@ def q_list(request):
 
 def popular(request):
     qs = Question.objects.all()
-    # qs = qs.order_by('-rating')
+    qs = qs.order_by('-rating')
     page, paginator = paginate(request, qs)
     paginator.baseurl = reverse('popular') + '?page='
 
