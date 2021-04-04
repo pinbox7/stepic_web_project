@@ -38,7 +38,7 @@ def q_list(request):
     paginator.baseurl = reverse('q_list') + '?page='
 
     return render(request, 'list.html', {
-        'title': 'Latest',
+        'title': qs.title,
         'questions': page.object_list,
         'page': page,
         'paginator': paginator,
@@ -52,7 +52,7 @@ def popular(request):
     paginator.baseurl = reverse('popular') + '?page='
 
     return render(request, 'list_rating.html', {
-        'title': 'Popular',
+        'title': qs.title,
         'questions': page.object_list,
         'page': page,
         'paginator': paginator,
