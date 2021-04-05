@@ -52,7 +52,7 @@ def popular(request):
     paginator.baseurl = reverse('popular') + '?page='
 
     return render(request, 'list_rating.html', {
-        'title': Question.title,
+        'title': Question.objects.title,
         'questions': page.object_list,
         'page': page,
         'paginator': paginator,
