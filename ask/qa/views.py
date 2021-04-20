@@ -9,7 +9,7 @@ def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
 
-def paginate(request, qs):
+def paginate(request, questions):
     try:
         limit = int(request.GET.get('limit', 10))
     except ValueError:
@@ -22,7 +22,7 @@ def paginate(request, qs):
     except ValueError:
         raise Http404
 
-    paginator = Paginator(qs, limit)
+    paginator = Paginator(questions, limit)
 
     try:
         page = paginator.page(page)
@@ -32,13 +32,13 @@ def paginate(request, qs):
 
 
 def q_list(request):
-    qs = Question.objects.all()
-    # qs = qs.order_by('-id')
-    page, paginator = paginate(request, qs)
+    questions = Question.objects.all()
+    questions = questions.order_by('-id')
+    page, paginator = paginate(request, questions)
     paginator.baseurl = reverse('q_list') + '?page='
 
     return render(request, 'list.html', {
-        'title': Question.objects.title,
+        'title': 'Latest',
         'questions': page.object_list,
         'page': page,
         'paginator': paginator,
@@ -46,13 +46,13 @@ def q_list(request):
 
 
 def popular(request):
-    qs = Question.objects.all()
-    # qs = qs.order_by('-rating')
-    page, paginator = paginate(request, qs)
+    questions = Question.objects.all()
+    questions = questions.order_by('-rating')
+    page, paginator = paginate(request, questions)
     paginator.baseurl = reverse('popular') + '?page='
 
-    return render(request, 'list_rating.html', {
-        'title': Question.objects.title,
+    return render(request, 'list.html', {
+        'title': 'Popular',
         'questions': page.object_list,
         'page': page,
         'paginator': paginator,
@@ -68,4 +68,5 @@ def question_detail(request, pk):
         'answers': answers,
         # 'form': form,
     })
+
 

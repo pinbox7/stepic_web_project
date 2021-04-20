@@ -1,14 +1,24 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<nav><ul class="pagination">
-{% for p in paginator.page_range %}
-    {% if p == page.number %}
-    <li class="active">
-    {% else %}
-    <li>
-    {% endif %}
-        <a href="{{ paginator.baseurl }}{{ p }}">
-        {{ p }}</a>
-</li>
-{% endfor %}
-</ul></nav>
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    {% for p in page.object_list %}
+    <li><a href="{{p.get_url}}">{{p.title}}</a></li>
+    {%endfor%}
+
+    <nav>
+        <ul>
+            {% for p in page.paginator.page_range %}
+            <li style="display: inline;"><a href="{{ page.paginator.baseurl}}{{p}}"> {{p}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+</body>
+
+</html>

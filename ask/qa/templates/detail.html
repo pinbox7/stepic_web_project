@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ question }}</title>
 </head>
+
 <body>
-{{ title }}
-{{ text }}
-{% for answer in answers %}
-    {{ answer.text }}
-{% endfor %}
+
+    <h1>{{ question }}</h1>
+        <div>{{ question.text }}, {{ question.author_id }}</div>
+        <hr>
+        <ul>
+        {% for answer in question.answer_set.all %}
+            <li>{{ answer.text }}, {{ answer.author_id }}</li>
+        {% endfor %}
+        </ul>
+        <hr>
+
 </body>
+
 </html>
