@@ -38,3 +38,5 @@ class Answer(models.Model):
     def __str__(self):
         return 'Answer by {}'.format(self.author)
 
+
+
