@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from qa.views import test, q_list, question_detail, popular
 from qa.views import question_ask, question_answer
+from qa.views import user_signup, user_login, user_logout
 
 
 urlpatterns = [
@@ -9,8 +10,8 @@ urlpatterns = [
     url(r'^popular/', popular, name='popular'),
     url(r'^ask/', question_ask, name='question_ask'),
     url(r'^answer/', question_answer, name='question_answer'),
-    url(r'^signup/', test, name='signup'),
-    url(r'^login/$', test, name='login'),
-    url(r'^logout/', test, name='logout'),
+    url(r'^signup/', user_signup, name='signup'),
+    url(r'^login/', user_login, name='login'),
+    url(r'^logout/', user_logout, name='logout'),
     url(r'^new/', test, name='new'),
 ]

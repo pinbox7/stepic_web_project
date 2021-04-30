@@ -1,15 +1,24 @@
 #!/bin/bash
 
+# Install
+sudo pip install django-autofixture pytz
+# sudo apt-get install -y w3m !!! это консольный браузер
+
 # Nginx
-sudo ln -sf /home/box/web/etc/nginx.conf  /etc/nginx/sites-enabled/default
+if [ -f /etc/nginx/sites-enabled/default ]; then
+  sudo rm /etc/nginx/sites-enabled/default
+fi
+touch /home/box/nginx.log
+sudo ln -sf /home/box/web/etc/nginx.conf /etc/nginx/sites-enabled/ask.conf
 sudo /etc/init.d/nginx restart
 
-# Gunicorn
-sudo ln -sf /home/box/web/etc/gunicorn.py /etc/gunicorn.d/ask_q
-sudo ln -sf /home/box/web/etc/ask_conf.py /etc/gunicorn.d/ask_
-# sudo gunicorn -c /etc/gunicorn.d/ask_conf.conf ask.wsgi:application
+# Gunicorn (ver. 17.5)
+touch /home/box/gunicorn.log
+sudo ln -sf /home/box/web/etc/gunicorn_ask.conf /etc/gunicorn.d/ask
 sudo /etc/init.d/gunicorn restart
 
-# run MySQL & create db
-sudo /etc/init.d/mysql restart
-mysql -uroot -e "create database swebdb"
+# MySQL
+echo 'innodb_use_native_aio = 0' | sudo tee --append /etc/mysql/my.cnf
+sudo service mysql restart
+sudo mysql -uroot -e "CREATE DATABASE swebdb CHARACTER SET utf8 COLLATE utf8_general_ci;"
+sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON swebdb.* TO 'auser'@'localhost' IDENTIFIED BY '12345678';"

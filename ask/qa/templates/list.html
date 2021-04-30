@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-</head>
+{% block title %} Ask Pupkin {% endblock %}
 
-<body>
-    {% for p in page.object_list %}
-    <li><a href="{{p.get_url}}">{{p.title}}</a></li>
-    {%endfor%}
+{% block content %}
+  {% block question_view_title %}<h1>New Questions</h1>{% endblock %}
+  {% for question in questions %}
+    {% block question_title %}
+      <h2><a href="{{ question.get_url }}">{{ question.title }}</a></h2>
+    {% endblock %}
+  {% endfor %}
 
-    <nav>
-        <ul>
-            {% for p in page.paginator.page_range %}
-            <li style="display: inline;"><a href="{{ page.paginator.baseurl}}{{p}}"> {{p}}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </nav>
-
-</body>
-
-</html>
+  {% include "pagination.html" %}
+{% endblock %}
